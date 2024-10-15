@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <title>Login</title>
+</head>
+<body>
+ <div class="wrapper">
+    <nav class="nav">
+        <div class="nav-logo">
+            <p>LongMovie</p>
+        </div>
+        <!-- <div class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="#" class="link active">Home</a></li>
+                <li><a href="#" class="link">Blog</a></li>
+                <li><a href="#" class="link">Services</a></li>
+                <li><a href="#" class="link">About</a></li>
+            </ul>
+        </div> -->
+        <div class="nav-button">
+            <button class="btn white-btn" id="loginBtn" onclick="login()">Sign In</button>
+        </div>
+        <div class="nav-menu-btn">
+            <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+        </div>
+    </nav>
+
+<!----------------------------- Form box ----------------------------------->   
+
+    <div class="form-box">
+        
+        <!------------------- login form -------------------------->
+
+        {% comment %} <div class="login-container" id="login">
+            <div class="top">
+                <header>Login</header>
+                <span class="red-err">
+                    {% if form.errors %}
+                    <div>
+                        <ul>
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    
+                    {% if messages %}
+                        <div>{% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}</div>
+                    {% endif %}
+                </span>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Username or Email">
+                <i class="bx bx-user"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" placeholder="Password">
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            <div class="input-box">
+                <input type="submit" class="submit" value="Sign In">
+            </div>
+            <div class="two-col">
+                <!-- <div class="one">
+                    <input type="checkbox" id="login-check">
+                    <label for="login-check"> Remember Me</label>
+                </div> -->
+                <div class="two top">
+                    <span>Don't have an account? <a href="#" onclick="register()">Sign Up</a></span>
+                </div>
+            </div>
+        </div> {% endcomment %}
+        <div class="login-container" id="login">
+            <div class="top">
+                <header>Đăng Nhập</header>
+                <span class="red-err">
+                    {% if form.non_field_errors %}
+                        <div>{{ form.non_field_errors }}</div>
+                    {% endif %}
+                </span>
+            </div>
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <div class="input-box">
+                    <input type="text" class="input-field" name="username" placeholder="Tài khoản" required>
+                    <i class="bx bx-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" class="input-field" name="password" placeholder="Mật khẩu" required>
+                    <i class="bx bx-lock-alt"></i>
+                </div>
+                <div class="input-box">
+                    <input type="submit" class="submit" value="Đăng Nhập">
+                </div>
+            </form>
+            <div class="two-col">
+                <!-- <div class="one">
+                    <input type="checkbox" id="login-check">
+                    <label for="login-check"> Remember Me</label>
+                </div> -->
+                <div class="two top">
+                    <span>Don't have an account? <a href="#" onclick="register()">Sign Up</a></span>
+                </div>
+            </div>
+        </div>
+
+        <!------------------- registration form -------------------------->
+        {% comment %} <div class="register-container" id="register">
+        <div class="top">
+            <header>Sign Up</header>
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="two-forms">
+                <div class="input-box">
+                    <input type="text" class="input-field" placeholder="Name" name="name" required>
+                    <i class="bx bx-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="text" class="input-field" placeholder="Number Phone" name="sdt" required>
+                    <i class="bx bx-rfid"></i>
+                </div>
+            </div>
+            <div class="input-box">
+                <input type="email" class="input-field" placeholder="Email" name="email" required>
+                <i class="bx bx-envelope"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" placeholder="Password" name="password" required>
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" placeholder="Re-Enter Password" name="password_confirmation" required>
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Class" name="class" required>
+                <i class="bx bx-receipt"></i>
+            </div>
+            <div class="input-box">
+                <input type="submit" class="submit" value="Register">
+            </div>
+            <div class="two-col">
+                <div class="two top">
+                    <span>Have an account? <a href="#" onclick="login()">Login</a></span>
+                </div>
+            </div>
+        </form>
+        
+        
+    </div> {% endcomment %}
+    <div class="register-container" id="register">
+        <div class="top">
+            <header>Đăng Ký</header>
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Tên đăng nhập" name="username" required>
+                <i class="bx bx-user"></i>
+            </div>
+            <div class="input-box">
+                <input type="email" class="input-field" placeholder="Email" name="email" required>
+                <i class="bx bx-envelope"></i>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Số điện thoại" name="sdt" required>
+                <i class="bx bx-rfid"></i>
+            </div>
+            <div class="input-box">
+                <select class="input-field" name="gioi_tinh" required>
+                    <option value="">Giới tính</option>
+                    <option value="Nam">Nam</option>
+                    <option value="Nu">Nữ</option>
+                </select>
+                <i class="bx bx-user"></i>
+            </div>
+            <div class="input-box">
+                <input type="date" class="input-field" name="ngay_sinh" required>
+                <i class="bx bx-calendar"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" placeholder="Mật khẩu" name="password1" required>
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" placeholder="Nhập lại mật khẩu" name="password2" required>
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            <div class="input-box">
+                <input type="submit" class="submit" value="Đăng Ký">
+            </div>
+        </form>
+    </div>
+    </div>
+</div>   
+
+
+<script>
+   
+   function myMenuFunction() {
+    var i = document.getElementById("navMenu");
+
+    if(i.className === "nav-menu") {
+        i.className += " responsive";
+    } else {
+        i.className = "nav-menu";
+    }
+   }
+ 
+</script>
+
+<script>
+
+    var a = document.getElementById("loginBtn");
+    var b = document.getElementById("registerBtn");
+    var x = document.getElementById("login");
+    var y = document.getElementById("register");
+
+    function login() {
+        x.style.left = "4px";
+        y.style.right = "-520px";
+        a.className += " white-btn";
+        b.className = "btn";
+        x.style.opacity = 1;
+        y.style.opacity = 0;
+    }
+
+    function register() {
+        x.style.left = "-510px";
+        y.style.right = "5px";
+        a.className = "btn";
+        b.className += " white-btn";
+        x.style.opacity = 0;
+        y.style.opacity = 1;
+    }
+
+</script>
+
+</body>
+</html>
