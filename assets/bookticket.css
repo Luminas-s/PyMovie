@@ -1,0 +1,315 @@
+/* General Body and Text Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url(https://starlight.vn/Content/img/bgs6.jpg);
+    color: white;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Main Header Styling */
+.main-header-area {
+    background-color: #fff;
+    padding: 0px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 31px;
+}
+
+.header-top-area {
+    background-color: #2b2b31;
+    padding: 10px 0;
+    color: #fff;
+}
+
+.header-top-area .header-top-social a {
+    color: white;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.header-top-area .header-top-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+
+.header-top-area .header-top-menu ul li {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.header-top-area .header-top-menu ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    border: 1px solid #f15a22;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+.header-top-area .header-top-menu ul li a:hover {
+    background-color: #f15a22;
+    color: #fff;
+}
+
+.site-logo img {
+    max-height: 70px;
+}
+
+.mainmenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainmenu nav ul {
+    list-style: none;
+    margin: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.mainmenu nav ul li {
+    margin-left: 30px;
+}
+
+.mainmenu nav ul li a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #222;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.mainmenu nav ul li a:hover {
+    color: #f15a22;
+}
+
+.mainmenu nav ul li ul {
+    display: none;
+    position: absolute;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+.mainmenu nav ul li:hover ul {
+    display: block;
+}
+
+.mainmenu nav ul li ul li a {
+    color: #222;
+    padding: 10px 15px;
+    display: block;
+}
+
+.mainmenu nav ul li ul li a:hover {
+    color: #f15a22;
+}
+
+/* Seat Selection Area Styling */
+.screen {
+    height: 50px;
+    width: 300px;
+    margin: 20px auto;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+}
+
+.screen-image {
+    align-items: center;
+    margin-bottom: 5%;
+}
+
+.seat-container {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.seat {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+}
+
+.seat.regular {
+    background-color: #ffeb3b;
+}
+
+.seat.couple {
+    background-color: #e91e63;
+}
+
+.seat.vip {
+    background-color: #03a9f4;
+}
+
+.seat.selected {
+    background-color: #00c853;
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    border-radius: 3px;
+}
+
+.legend-regular {
+    background-color: #ffeb3b;
+}
+
+.legend-couple {
+    background-color: #e91e63;
+}
+
+.legend-vip {
+    background-color: #03a9f4;
+}
+
+.legend-selected {
+    background-color: #00c853;
+}
+
+#next-btn {
+    padding: 10px 20px;
+    background-color: #ffeb3b;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: black;
+}
+
+/* Combo Selection Page Styling */
+.combo-list {
+    margin-top: 20px;
+}
+
+.combo-item {
+    background-color: #fff;
+    color: #333;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.combo-item img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.combo-content-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.combo-content-description {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.combo-content-price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #f60;
+    margin: 10px 0;
+}
+
+.counter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.counter-container button {
+    background-color: #f60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.counter-container input {
+    width: 60px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0 10px;
+    font-size: 1.2rem;
+}
+
+#next-btn {
+    background-color: #f60;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    display: block;
+    margin: 20px auto;
+    width: 200px;
+}
+
+#next-btn:hover {
+    background-color: #ff8533;
+}
+
+/* Footer Styling */
+footer {
+    margin-top: 50px;
+    background-color: #1a1a1a;
+    color: #ddd;
+    padding: 20px;
+    text-align: center;
+}
+
+footer a {
+    color: #ff8533;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

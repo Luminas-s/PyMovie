@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sơ đồ chọn ghế</title>
+    {% comment %} <link rel="stylesheet" href="assets/bookticket.css" /> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'assets/bookticket.css' %}" > 
+  </head>
+  <body>
+    <div class="main-header-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="site-logo"> 
+              <a href="https://starlight.vn/">
+                <img src="{% static 'images/logo.png' %}" alt="filmoja">
+              </a>
+            </div>
+          </div> 
+          <div class="col-lg-9">
+            <div class="mainmenu">
+              <nav>
+                <ul id="responsive_navigation">
+                  <li><a href="https://starlight.vn/">Trang chủ</a></li>
+                  <li><a href="https://starlight.vn/lich-chieu.html">Lịch chiếu</a></li>
+                  <li>
+                    <a href="#">Phim</a>
+                    <ul>
+                      <li><a href="https://starlight.vn/phim.html">Phim Đang Chiếu</a></li>
+                      <li><a href="https://starlight.vn/phim-sap-chieu.html">Phim Sắp Chiếu</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="https://starlight.vn/uu-dai.html">Khuyến Mãi</a></li>
+                  <li><a href="https://starlight.vn/tin-tuc.html">Điện Ảnh</a></li>
+                  <li><a href="https://starlight.vn/lien-he.html">Liên hệ</a></li>
+                  <li><a href="https://starlight.vn/tuyen-dung.html">Tuyển dụng</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popup Xác nhận -->
+    <div id="confirmation-popup" class="popup">
+      <div class="popup-content">
+        <h2>Xác nhận đặt vé</h2>
+        <p id="popup-seats"></p>
+        <p id="popup-total"></p>
+        <button id="confirm-btn" class="popup-btn">Xác nhận</button>
+        <button id="close-btn" class="popup-btn">Đóng</button>
+      </div>
+    </div>
+
+   <!-- Popup Xác nhận -->
+<div id="confirmation-popup" class="popup">
+  <div class="popup-content">
+    <h2>Xác nhận đặt vé</h2>
+    <p id="popup-seats"></p>
+    <p id="popup-total"></p>
+
+    <!-- Form ẩn để gửi dữ liệu ghế và tổng tiền -->
+    <form id="confirm-form" method="POST" action="{% url 'comboselection' %}">
+      {% csrf_token %}
+      <input type="hidden" name="selected_seats" id="selected-seats-input">
+      <input type="hidden" name="total_price" id="total-price-input">
+      <button type="submit" id="confirm-btn" class="popup-btn">Xác nhận</button>
+    </form>
+
+    <button id="close-btn" class="popup-btn">Đóng</button>
+  </div>
+</div>
+
+    <div class="screen-thumb">
+      <h4 class="screen">MÀN HÌNH</h4>  
+      <img class="screen-image" src="http://pixner.net/boleto/demo/assets/images/movie/screen-thumb.png" alt="movie">
+    </div>
+    <div class="seat-container" id="seat-container"></div>
+
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color legend-regular"></div> Ghế thường
+      </div>
+      <div class="legend-item">
+        <div class="legend-color legend-couple"></div> Ghế đôi
+      </div>
+      <div class="legend-item">
+        <div class="legend-color legend-vip"></div> Ghế VIP
+      </div>
+      <div class="legend-item">
+        <div class="legend-color legend-selected"></div> Ghế đã chọn
+      </div>
+    </div>
+
+    <p>Ghế đã chọn: <span id="selected-seats">None</span></p>
+    <p>Tổng tiền: <span id="total-price">0</span> VND</p>
+    <button id="next-btn">NEXT</button>
+    
+    <footer>
+      <p>© 2024 Starlight Cinema. All Rights Reserved.</p>
+      <p>
+        Hotline: <a href="tel:19001722">1900 1722</a> |
+        Email: <a href="mailto:pythfilm@gmail.com">pythfilm@gmail.com</a>
+      </p>
+    </footer>
+
+    <script>
+      // Mảng cấu trúc ghế, mỗi phần tử là 1 hàng ghế với loại ghế tương ứng
+      const seatLayout = [
+        ['regular', 'regular', 'couple', 'couple', 'regular', 'regular', 'vip', 'vip', 'regular', 'regular', 'couple', 'couple', 'regular', 'regular'],
+        ['regular', 'regular', 'couple', 'couple', 'regular', 'regular', 'vip', 'vip', 'regular', 'regular', 'couple', 'couple', 'regular', 'regular'],
+        ['regular', 'regular', 'couple', 'couple', 'regular', 'regular', 'vip', 'vip', 'regular', 'regular', 'couple', 'couple', 'regular', 'regular'],
+        ['regular', 'regular', 'couple', 'couple', 'regular', 'regular', 'vip', 'vip', 'regular', 'regular', 'couple', 'couple', 'regular', 'regular'],
+        ['regular', 'regular', 'couple', 'couple', 'regular', 'regular', 'vip', 'vip', 'regular', 'regular', 'couple', 'couple', 'regular', 'regular']      
+      ];
+
+      const seatContainer = document.getElementById('seat-container');
+      let selectedSeats = [];
+      let ticketPrices = { regular: 100000, couple: 150000, vip: 200000 };
+
+      // Duyệt qua mảng layout và tạo ghế động
+      seatLayout.forEach((rowLayout, rowIndex) => {
+        const rowDiv = document.createElement('div');
+        rowDiv.classList.add('row');
+
+        rowLayout.forEach((seatType, seatIndex) => {
+          const seatNumber = `${String.fromCharCode(65 + rowIndex)}${String(seatIndex + 1).padStart(2, '0')}`;
+          const seatDiv = document.createElement('div');
+          seatDiv.classList.add('seat', seatType);
+          seatDiv.textContent = seatNumber;
+          seatDiv.dataset.seat = seatNumber;
+
+          seatDiv.addEventListener('click', () => toggleSeat(seatDiv, seatType, seatNumber));
+          rowDiv.appendChild(seatDiv);
+        });
+
+        seatContainer.appendChild(rowDiv);
+      });
+
+      // Hàm toggle chọn ghế
+      function toggleSeat(seat, seatType, seatNumber) {
+        seat.classList.toggle('selected');
+        if (selectedSeats.includes(seatNumber)) {
+          selectedSeats = selectedSeats.filter((seat) => seat !== seatNumber);
+        } else {
+          selectedSeats.push(seatNumber);
+        }
+        updateSelection();
+      }
+
+      // Cập nhật trạng thái chọn và tổng tiền
+      function updateSelection() {
+        document.getElementById('selected-seats').textContent = selectedSeats.join(', ') || 'None';
+
+        let totalPrice = 0;
+        selectedSeats.forEach((seat) => {
+          const seatDiv = document.querySelector(`div[data-seat="${seat}"]`);
+          const seatType = seatDiv.classList.contains('regular') ? 'regular' : seatDiv.classList.contains('couple') ? 'couple' : 'vip';
+          totalPrice += ticketPrices[seatType];
+        });
+
+        document.getElementById('total-price').textContent = totalPrice.toLocaleString();
+      }
+
+      // Khi nhấn nút NEXT, hiện popup thay vì alert
+      document.getElementById('next-btn').addEventListener('click', () => {
+        if (selectedSeats.length > 0) {
+          // Hiển thị popup xác nhận
+          const popup = document.getElementById('confirmation-popup');
+          const selectedSeatsText = selectedSeats.join(', ');
+          const totalPriceText = document.getElementById('total-price').textContent;
+      
+          document.getElementById('popup-seats').textContent = `Bạn đã chọn các ghế: ${selectedSeatsText}`;
+          document.getElementById('popup-total').textContent = `Tổng tiền: ${totalPriceText} VND`;
+      
+          popup.style.display = 'block'; // Hiển thị popup
+
+          // Nút xác nhận đặt vé
+          document.getElementById('confirm-btn').addEventListener('click', () => {
+            window.location.href = "{% url 'comboselection' %}";
+ // Điều hướng sang trang combo
+          });
+      
+          // Nút đóng popup
+          document.getElementById('close-btn').addEventListener('click', () => {
+            popup.style.display = 'none'; // Ẩn popup
+          });
+        } else {
+          // Hiển thị popup quên chọn ghế
+          const errorPopup = document.getElementById('error-popup');
+          errorPopup.style.display = 'block';
+
+          // Nút đóng popup quên chọn ghế
+          document.getElementById('close-error-btn').addEventListener('click', () => {
+            errorPopup.style.display = 'none'; // Ẩn popup quên chọn ghế
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

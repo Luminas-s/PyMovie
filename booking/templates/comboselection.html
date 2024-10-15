@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="{% static 'assets/bookticket.css' %}" >
+    
+    {% comment %} <link rel="stylesheet" href="../static/assets/bookticket.css" > {% endcomment %}
+
+    <title>Chọn Combo | Starlight</title>
+  </head>
+  <body>
+    <header class="header-area">
+      <div class="main-header-area">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="site-logo">
+                <a href="https://starlight.vn/">
+                  <img src="{% static 'images/logo.png' %}" alt="filmoja" />
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-9">
+              <div class="mainmenu">
+                <nav>
+                  <ul id="responsive_navigation">
+                    <li><a href="https://starlight.vn/">Trang chủ</a></li>
+                    <li><a href="https://starlight.vn/lich-chieu.html">Lịch chiếu</a></li>
+                    <li>
+                      <a href="#">Phim</a>
+                      <ul>
+                        <li><a href="https://starlight.vn/phim.html">Phim Đang Chiếu</a></li>
+                        <li><a href="https://starlight.vn/phim-sap-chieu.html">Phim Sắp Chiếu</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="https://starlight.vn/uu-dai.html">Khuyến Mãi</a></li>
+                    <li><a href="https://starlight.vn/tin-tuc.html">Điện Ảnh</a></li>
+                    <li><a href="https://starlight.vn/lien-he.html">Liên hệ</a></li>
+                    <li><a href="https://starlight.vn/tuyen-dung.html">Tuyển dụng</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="header-bottom">
+        <h2>Bước 2: Chọn Combo</h2>
+      </section>
+    </header>
+
+    <main class="feature-section">
+      <div class="combo-list container">
+        <div class="row mb-4">
+          <!-- Combo Item 1 -->
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+            <div class="combo-item">
+              <div class="combo-image">
+                <img src="{% static 'images/combo1.jpg' %}" alt="Combo 1" />
+              </div>
+              <div class="combo-content">
+                <h3 class="combo-content-name">1 Bắp đôi 30 OZ + 2 nước 22 OZ</h3>
+                <p class="combo-content-description">
+                  2 COCA 22OZ + 1 BẮP ĐÔI 30OZ + 1 Bơ + Phomai
+                </p>
+                <p class="combo-content-price">129.000đ</p>
+              </div>
+              <div class="combo-quantity-area">
+                <div class="counter-container">
+                  <button class="decrease">-</button>
+                  <input
+                    type="number"
+                    class="counterInput"
+                    value="0"
+                    aria-label="input"
+                    min="0"
+                  />
+                  <button class="increase">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Combo Item 2 -->
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+            <div class="combo-item">
+              <div class="combo-image">
+                <img src="{% static 'images/combo1.jpg' %}" alt="Combo 1" />
+              </div>
+              <div class="combo-content">
+                <h3 class="combo-content-name">1 Bắp 22 OZ + 1 Nước 22 OZ</h3>
+                <p class="combo-content-description">
+                  1 COCA 22OZ + 1 BẮP 22OZ Bơ
+                </p>
+                <p class="combo-content-price">75.000đ</p>
+              </div>
+              <div class="combo-quantity-area">
+                <div class="counter-container">
+                  <button class="decrease">-</button>
+                  <input
+                    type="number"
+                    class="counterInput"
+                    value="0"
+                    aria-label="input"
+                    min="0"
+                  />
+                  <button class="increase">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Combo Item 3 -->
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+            <div class="combo-item">
+              <div class="combo-image">
+                <img src="{% static 'images/combo1.jpg' %}" alt="Combo 1" />
+
+              </div>
+              <div class="combo-content">
+                <h3 class="combo-content-name">1 Bắp 30 OZ + 1 Nước 22 OZ</h3>
+                <p class="combo-content-description">
+                  1 COCA 22OZ + 1 BẮP 30OZ Bơ
+                </p>
+                <p class="combo-content-price">105.000đ</p>
+              </div>
+              <div class="combo-quantity-area">
+                <div class="counter-container">
+                  <button class="decrease">-</button>
+                  <input
+                    type="number"
+                    class="counterInput"
+                    value="0"
+                    aria-label="input"
+                    min="0"
+                  />
+                  <button class="increase">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Combo Item 4 -->
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+            <div class="combo-item">
+              <div class="combo-image">
+                <img src="{% static 'images/combo1.jpg' %}" alt="Combo 1" />
+              </div>
+              <div class="combo-content">
+                <h3 class="combo-content-name">1 Bắp đôi 22 OZ + 2 nước 22 OZ</h3>
+                <p class="combo-content-description">
+                  2 COCA 22OZ + 1 BẮP ĐÔI 22OZ Bơ
+                </p>
+                <p class="combo-content-price">99.000đ</p>
+              </div>
+              <div class="combo-quantity-area">
+                <div class="counter-container">
+                  <button class="decrease">-</button>
+                  <input
+                    type="number"
+                    class="counterInput"
+                    value="0"
+                    aria-label="input"
+                    min="0"
+                  />
+                  <button class="increase">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Combo Item 5 -->
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+            <div class="combo-item">
+              <div class="combo-image">
+                <img src="{% static 'images/combo1.jpg' %}" alt="Combo 1" />
+              </div>
+              <div class="combo-content">
+                <h3 class="combo-content-name">1 Bắp caramel + 1 Nước 22 OZ</h3>
+                <p class="combo-content-description">
+                  1 COCA 22OZ + 1 BẮP CARAMEL
+                </p>
+                <p class="combo-content-price">110.000đ</p>
+              </div>
+              <div class="combo-quantity-area">
+                <div class="counter-container">
+                  <button class="decrease">-</button>
+                  <input
+                    type="number"
+                    class="counterInput"
+                    value="0"
+                    aria-label="input"
+                    min="0"
+                  />
+                  <button class="increase">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Combo Item 6 -->
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+            <div class="combo-item">
+              <div class="combo-image">
+                <img src="{% static 'images/combo1.jpg' %}" alt="Combo 1" />
+              </div>
+              <div class="combo-content">
+                <h3 class="combo-content-name">1 Bắp phomai + 1 Nước 22 OZ</h3>
+                <p class="combo-content-description">
+                  1 COCA 22OZ + 1 BẮP PHOMAI
+                </p>
+                <p class="combo-content-price">115.000đ</p>
+              </div>
+              <div class="combo-quantity-area">
+                <div class="counter-container">
+                  <button class="decrease">-</button>
+                  <input
+                    type="number"
+                    class="counterInput"
+                    value="0"
+                    aria-label="input"
+                    min="0"
+                  />
+                  <button class="increase">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ <!-- Popup Xác nhận -->
+ <div id="confirmation-popup" class="popup">
+  <div class="popup-content">
+    <h2>Xác nhận đặt combo</h2>
+    <p id="popup-combos"></p>
+    <p id="popup-total"></p>
+    <button id="confirm-btn" class="popup-btn">Xác nhận</button>
+    <button id="close-btn" class="popup-btn">Đóng</button>
+  </div>
+</div>
+<!-- Popup không dùng combo -->
+<div id="no-combo-popup" class="popup">
+  <div class="popup-content">
+    <h2>Xác nhận không dùng combo</h2>
+    <p>Bạn chưa chọn bất kỳ combo nào. Bạn có chắc chắn muốn tiếp tục mà không sử dụng combo?</p>
+    <button id="confirm-no-combo-btn" class="popup-btn">Xác nhận</button>
+    <button id="close-no-combo-btn" class="popup-btn">Đóng</button>
+  </div>
+</div>
+
+<section>
+  <button id="next-btn">TIẾP THEO</button>
+  <button id="back-btn">QUAY LẠI</button> 
+</section>
+</main>
+
+    <footer>
+      <p>© 2024 Starlight Cinema. All Rights Reserved.</p>
+      <p>
+        Hotline: <a href="tel:19001722">1900 1722</a> |
+        Email: <a href="mailto:pythfilm@gmail.com">pythfilm@gmail.com</a>
+      </p>
+    </footer>
+
+    
+    <script>
+      // Tính toán tổng số lượng combo và tổng tiền
+      function calculateTotal() {
+        let totalCombos = 0;
+        let totalPrice = 0;
+
+        document.querySelectorAll('.combo-item').forEach(function (item) {
+          const comboQuantity = parseInt(item.querySelector('.counterInput').value);
+          const comboPrice = parseInt(item.querySelector('.combo-content-price').textContent.replace(/\D/g, ''));
+
+          totalCombos += comboQuantity;
+          totalPrice += comboQuantity * comboPrice;
+        });
+
+        return { totalCombos, totalPrice };
+      }
+
+      // Xử lý sự kiện cho nút "TIẾP THEO"
+      document.getElementById('next-btn').addEventListener('click', function (e) {
+        const { totalCombos, totalPrice } = calculateTotal();
+
+        if (totalCombos > 0) {
+          // Hiển thị popup xác nhận combo
+          const popup = document.getElementById('confirmation-popup');
+          document.getElementById('popup-combos').textContent = `Bạn đã chọn ${totalCombos} combo.`;
+          document.getElementById('popup-total').textContent = `Tổng tiền: ${totalPrice.toLocaleString()}đ`;
+          popup.style.display = 'block';
+
+          // Nút xác nhận trong popup
+          document.getElementById('confirm-btn').addEventListener('click', function () {
+            window.location.href = "{% url 'checkout' %}"; // Chuyển trang khi xác nhận combo
+          });
+
+          // Nút đóng popup
+          document.getElementById('close-btn').addEventListener('click', function () {
+            popup.style.display = 'none'; // Đóng popup combo
+          });
+
+        } else {
+          // Hiển thị popup xác nhận không dùng combo
+          const noComboPopup = document.getElementById('no-combo-popup');
+          noComboPopup.style.display = 'block';
+
+          // Nút tiếp tục không dùng combo
+          document.getElementById('confirm-no-combo-btn').addEventListener('click', function () {
+            window.location.href = "{% url 'checkout' %}";
+          });
+          // Nút đóng popup không chọn combo
+          document.getElementById('close-no-combo-btn').addEventListener('click', function () {
+            noComboPopup.style.display = 'none'; // Đóng popup không chọn combo
+          });
+        }
+      });
+
+      // Xử lý sự kiện cho nút "QUAY LẠI"
+      document.getElementById('back-btn').addEventListener('click', function() {
+        window.location.href = "{% url 'bookticket' %}"; // Chuyển hướng tới trang chọn ghế
+      });
+
+      // Increase and decrease functionality for combo quantity
+      document.querySelectorAll('.increase').forEach(function (button) {
+        button.addEventListener('click', function () {
+          let counterInput = this.parentElement.querySelector('.counterInput');
+          counterInput.value = parseInt(counterInput.value) + 1;
+        });
+      });
+
+      document.querySelectorAll('.decrease').forEach(function (button) {
+        button.addEventListener('click', function () {
+          let counterInput = this.parentElement.querySelector('.counterInput');
+          if (parseInt(counterInput.value) > 0) {
+            counterInput.value = parseInt(counterInput.value) - 1;
+          }
+        });
+      });
+
+      document.querySelectorAll('.counterInput').forEach(function (input) {
+        input.addEventListener('input', function () {
+          if (this.value < 0) {
+            this.value = 0;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
