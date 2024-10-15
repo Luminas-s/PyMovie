@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'PythFilm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pythfilm',
+        'NAME': 'movie_ticket_db',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
