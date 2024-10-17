@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Phim
 from .forms import PhimForm
-from django.contrib import messages
-from .forms import RegistrationForm, LoginForm
-from .models import NguoiDung
-from django.contrib.auth.hashers import check_password
+from django.shortcuts import render
+
+def home(request):
+    return render(request, 'home.html')  # Render a home page template
+
 
 # View để hiển thị danh sách phim
 def danh_sach_phim(request):
@@ -414,35 +415,44 @@ def xoa_combo(request, id):
     return render(request, 'base/xoa_combo.html', {'combo': combo})
 
 
-#######
-def register(request):
+
+
+
+from .models import BinhLuan
+from .forms import BinhLuanForm
+
+# Hiển thị danh sách bình luận
+def danh_sach_binh_luan(request):
+    binh_luans = BinhLuan.objects.all()
+    return render(request, 'base/danh_sach_binh_luan.html', {'binh_luans': binh_luans})
+
+# Thêm bình luận mới
+def them_binh_luan(request):
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
+        form = BinhLuanForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Đăng ký thành công!")
-            return redirect('login')  # Chuyển hướng đến trang đăng nhập
+            return redirect('danh_sach_binh_luan')
     else:
-        form = RegistrationForm()
-    return render(request, 'base/login.html', {'form': form})
+        form = BinhLuanForm()
+    return render(request, 'base/them_binh_luan.html', {'form': form})
 
-def user_login(request):
+# Sửa bình luận
+def sua_binh_luan(request, id):
+    binh_luan = get_object_or_404(BinhLuan, id=id)
     if request.method == 'POST':
-        form = LoginForm(request.POST)
+        form = BinhLuanForm(request.POST, instance=binh_luan)
         if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            try:
-                user = NguoiDung.objects.get(username=username)
-                if check_password(password, user.password):
-                    # Đăng nhập thành công
-                    messages.success(request, "Đăng nhập thành công!")
-                    return redirect('login')  # Chuyển hướng đến trang chính
-                else:
-                    form.add_error(None, "Tài khoản hoặc mật khẩu không đúng.")
-            except NguoiDung.DoesNotExist:
-                form.add_error(None, "Tài khoản hoặc mật khẩu không đúng.")
+            form.save()
+            return redirect('danh_sach_binh_luan')
     else:
-        form = LoginForm()
-    return render(request, 'base/login.html', {'form': form})
+        form = BinhLuanForm(instance=binh_luan)
+    return render(request, 'base/sua_binh_luan.html', {'form': form})
 
+# Xóa bình luận
+def xoa_binh_luan(request, id):
+    binh_luan = get_object_or_404(BinhLuan, id=id)
+    if request.method == 'POST':
+        binh_luan.delete()
+        return redirect('danh_sach_binh_luan')
+    return render(request, 'base/xoa_binh_luan.html', {'binh_luan': binh_luan})

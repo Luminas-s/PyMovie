@@ -1,5 +1,5 @@
 """
-WSGI config for Pymovie project.
+WSGI config for PythFilm project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

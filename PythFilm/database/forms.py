@@ -1,11 +1,10 @@
 from django import forms
-from .models import Phim, NguoiDung, TheLoai, DinhDangPhim, XuatChieu, RapChieu, Ve, GheNgoi, Combo
-from django.contrib.auth.hashers import make_password
+from .models import Phim, NguoiDung, TheLoai, DinhDangPhim, XuatChieu, RapChieu, Ve, GheNgoi, Combo, BinhLuan
 
 class PhimForm(forms.ModelForm):
     class Meta:
         model = Phim
-        fields = ['ten_phim', 'the_loai', 'dao_dien', 'dien_vien', 'thoi_luong', 'tom_tat', 'thumbnail']
+        fields = ['ten_phim', 'the_loai', 'dao_dien', 'dien_vien', 'thoi_luong', 'tom_tat', 'thumbnail', 'do_tuoi']
 
 class NguoiDungForm(forms.ModelForm):
     class Meta:
@@ -79,31 +78,12 @@ class GheNgoiForm(forms.ModelForm):
         model = GheNgoi
         fields = ['ten_ghe', 'rap_chieu', 'loai_ghe', 'gia_ve']
 
-####
-class RegistrationForm(forms.ModelForm):
-    password1 = forms.CharField(widget=forms.PasswordInput, label='Mật khẩu')
-    password2 = forms.CharField(widget=forms.PasswordInput, label='Nhập lại mật khẩu')
 
+class BinhLuanForm(forms.ModelForm):
     class Meta:
-        model = NguoiDung
-        fields = ['username', 'email', 'sdt', 'gioi_tinh', 'ngay_sinh']
-
-    def clean_password2(self):
-        password1 = self.cleaned_data.get('password1')
-        password2 = self.cleaned_data.get('password2')
-        if password1 != password2:
-            raise forms.ValidationError("Mật khẩu không khớp!")
-        return password2
-
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.password = make_password(self.cleaned_data['password1'])
-        if commit:
-            user.save()
-        return user
-
-class LoginForm(forms.Form):
-    username = forms.CharField(max_length=150)
-    password = forms.CharField(widget=forms.PasswordInput)
-
-
+        model = BinhLuan
+        fields = ['phim', 'user_binh_luan', 'rating', 'noi_dung']
+        widgets = {
+            'rating': forms.NumberInput(attrs={'min': 1, 'max': 5}),
+            'noi_dung': forms.Textarea(attrs={'rows': 3}),
+        }

@@ -1,5 +1,5 @@
 """
-URL configuration for Pymovie project.
+URL configuration for PythFilm project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from database import views as database
 from database import views  
 
@@ -75,11 +75,18 @@ urlpatterns = [
     path('combos/them/', views.them_combo, name='them_combo'),
     path('combos/sua/<int:id>/', views.sua_combo, name='sua_combo'),
     path('combos/xoa/<int:id>/', views.xoa_combo, name='xoa_combo'),
-        # Đường dẫn cho Web quản lý bán vé
-
-        
-    path('', views.quan_ly, name='quan_ly'),
-    path('login/', views.user_login, name='login'),
-
-
+    
+    path('binh-luan/', views.danh_sach_binh_luan, name='danh_sach_binh_luan'),
+    path('binh-luan/them/', views.them_binh_luan, name='them_binh_luan'),
+    path('binh-luan/sua/<int:id>/', views.sua_binh_luan, name='sua_binh_luan'),
+    path('binh-luan/xoa/<int:id>/', views.xoa_binh_luan, name='xoa_binh_luan'),
+    
+    
+    path('binh-luan/', views.danh_sach_binh_luan, name='danh_sach_binh_luan'),
+    path('binh-luan/them/', views.them_binh_luan, name='them_binh_luan'),
+    path('binh-luan/sua/<int:id>/', views.sua_binh_luan, name='sua_binh_luan'),
+    path('binh-luan/xoa/<int:id>/', views.xoa_binh_luan, name='xoa_binh_luan'),
+     
+    # Đường dẫn cho Web quản lý bán vé
+    path('', views.quan_ly, name='quan_ly')
 ]
